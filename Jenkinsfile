@@ -10,21 +10,17 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            steps {
-                script {
-                   sh '/usr/local/bin/docker build -t qr-app .'
-                }
-            }
-        }
+    steps {
+        sh 'export PATH=$PATH:/usr/local/bin && docker build -t qr-app .'
+    }
+}
 
-        stage('Run Container') {
-            steps {
-                script {
-                    sh 'docker rm -f qr-container || true'
-                    sh 'docker run -d -p 3000:3000 --name qr-container qr-app'
-                }
-            }
-        }
+stage('Run Container') {
+    steps {
+        sh 'export PATH=$PATH:/usr/local/bin && docker rm -f qr-container || true'
+        sh 'export PATH=$PATH:/usr/local/bin && docker run -d -p 3000:3000 --name qr-container qr-app'
+    }
+}
 
     }
 }
