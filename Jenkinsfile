@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone Code') {
             steps {
-                git 'https://github.com/vijaybr2219/QR.git'
+                git branch: 'main', url: 'https://github.com/vijaybr2219/QR.git'
             }
         }
 
